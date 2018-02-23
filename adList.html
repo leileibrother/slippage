@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>广告列表--LED传媒联盟</title>
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="css/square/blue.css" rel="stylesheet">
+    <meta name="viewport" content="width=375,maximum-scale=4,user-scalable=no">
+    <style>
+        li .led{line-height: 24px;background: rgb(53, 199, 106);}
+        li .led img{width: 25px;}
+        li .led  p{font-size:14px;}
+        .rightDiv{padding-top:10px;}
+        .rightDiv .tall,.rightDiv .ad{line-height: 23px;}
+        .tall img,.ad img{height: 20px;}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="left">
+                <img src="img/seach.png">
+            </div>
+            <span>广告列表（2）</span>
+            <div class="right">
+                <span style="font-size: 34px;">+</span>
+            </div>
+        </div>
+        <div class="listContent">
+            <div class="top">
+                <span class="total">
+                    <input type="checkbox" name="square-checkbox" value="">
+                </span>
+                <span id="doshow">
+                    <i></i>
+                    <span>系统默认分组（1/1）</span>
+                </span>
+
+            </div>
+            <ul class="listUl">
+                <li class="clearfix">
+                    <div class="form-checkbox fl" style="margin-top: 22px;">
+                        <input type="checkbox" name="square-checkbox" value="1">
+                    </div>
+                    <div class="led fl">
+                        <img src="img/time2.png">
+                        <p>时间</p>
+                    </div>
+                    <div class="fl infoDiv">
+                        <p>名称：广告-4</p>
+                        <p style="margin: 5px 0;">编号：4</p>
+                        <p>宽高：192*32</p>
+                    </div>
+                    <div class="fr rightDiv">
+                        <p style="margin: 5px 0;">2018-01-24 12:12</p>
+                        <p>
+                            <span onclick="window.location.href='editAd.html'">
+                                <span class="ad">
+                                    <img src="img/edit.png">
+                                </span>
+                                <span style="margin-right:10px;">编辑</span>
+                            </span>
+                            <span>
+                                <span class="tall">
+                                    <img src="img/del2.png">
+                                </span>
+                                <span>删除</span>
+                            </span>
+                        </p>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <div class="form-checkbox fl" style="margin-top: 22px;">
+                        <input type="checkbox" name="square-checkbox" value="1">
+                    </div>
+                    <div class="led fl">
+                        <img src="img/time2.png">
+                        <p>时间</p>
+                    </div>
+                    <div class="fl infoDiv">
+                        <p>名称：广告-4</p>
+                        <p style="margin: 5px 0;">编号：4</p>
+                        <p>宽高：192*32</p>
+                    </div>
+                    <div class="fr rightDiv">
+                        <p style="margin: 5px 0;">2018-01-24 12:12</p>
+                        <p>
+                            <span onclick="window.location.href='editAd.html'">
+                                <span class="ad">
+                                    <img src="img/edit.png">
+                                </span>
+                                <span style="margin-right:10px;">编辑</span>
+                            </span>
+                            <span>
+                                <span class="tall">
+                                    <img src="img/del2.png">
+                                </span>
+                                <span>删除</span>
+                            </span>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="bottom">
+        <ul class="clearfix">
+            <li onclick="window.location.href='index.html'">
+                <img src="img/cop2.png">
+                <p>我的LED屏</p>
+            </li>
+            <li>
+                <div class="mid">
+                    <img src="img/plain.png">
+                    <p>投放</p>
+                </div>
+                <div style="color:#fff;">111</div>
+            </li>
+            <li onclick="window.location.href='adList.html'">
+                <img src="img/list1.png">
+                <p style="color: #30b8f6;">广告列表</p>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.icheck.min.js"></script>
+<script>
+    $(function () {
+        //input复选按钮
+        $('.form-checkbox input,.total input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            increaseArea: '20%'
+        });
+        //选中获取value
+        var ids = [];
+        $('.form-checkbox input').on('ifChecked', function () {
+            var id = $(this).val();
+            ids.push(id);
+            $('.mid').html("<span style='font-size:26px'>" + ids.length + "</span><p>投放</p>");
+            $('.mid').css({ 'background': '#29b6f6', "padding-top": "0" });
+        })
+        $('.form-checkbox input').on('ifUnchecked', function () {
+            var id = $(this).val();
+            var index = ids.indexOf(id);
+            if (index > -1) {
+                ids.splice(index, 1);
+            }
+            $('.mid').html("<img src='img/plain.png'><p>投放</p>");
+            $('.mid').css({ 'background': '#ccc', "padding-top": "14px" });
+        })
+        //全部选中
+        $('.total input').on('ifChecked', function () {
+            $('.form-checkbox input').iCheck('check');
+            $('.mid').html("<span style='font-size:26px'>" + ids.length + "</span><p>投放</p>");
+            $('.mid').css({ 'background': '#29b6f6', "padding-top": "0" });
+        })
+        $('.total input').on('ifUnchecked', function () {
+            $('.form-checkbox input').iCheck('uncheck');
+            $('.mid').html("<img src='img/plain.png'><p>投放</p>");
+            $('.mid').css({ 'background': '#ccc', "padding-top": "14px" });
+        })
+
+        //展开收起
+        $('#doshow').click(function () {
+            var display = $(this).parent('.top').next('.listUl').css('display');
+            console.log(display);
+            if (display == 'block') {
+                $(this).parent('.top').next('.listUl').css('display', 'none');
+                $(this).find('i').css('background-image', 'url("img/right.png")')
+            } else {
+                $(this).parent('.top').next('.listUl').css('display', 'block');
+                $(this).find('i').css('background-image', 'url("img/up.png")')
+            }
+        })
+
+    })
+
+</script>
+
+</html>
